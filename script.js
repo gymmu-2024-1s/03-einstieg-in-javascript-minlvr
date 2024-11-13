@@ -29,12 +29,99 @@ export function aufgabe01(args) {
     // damit wir nicht so viele Klammern schreiben müssen.
     const currentElement = input[i]
 
-    // Hier wird das aktuelle Zeichen ans Ende der Resultat-Liste angehängt.
-    result.push(currentElement)
+    if (currentElement === "e") {
+      // do nothing
+    } else if (currentElement === "E") {
+      // auch E ignorieren
+    } else {
+      result.push(currentElement)
+    }
   }
-
-  // Hier geben wir das Resultat zurück, und machen einen Text daraus.
   return result.join("")
 }
 
 linkupExerciseHandler("[data-click=aufgabe01]", aufgabe01)
+
+export function aufgabe02(args) {
+  const input = args
+  const result = []
+
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+    result.push(currentElement)
+    result.push(currentElement)
+  }
+
+  return result.join("")
+}
+
+linkupExerciseHandler("[data-click=aufgabe02]", aufgabe02)
+
+export function aufgabe03(args) {
+  const input = args
+  let count = 0
+
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+    // count vor for-Schleife deklarieren
+
+    if (currentElement === "e" || currentElement === "E") {
+      count = count + 1
+    } else {
+      // do nothing
+    }
+  }
+
+  return count
+}
+
+linkupExerciseHandler("[data-click=aufgabe03]", aufgabe03)
+
+export function aufgabe04(args) {
+  const input = args
+  let count = 0
+
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+
+    if (currentElement === " " || currentElement === " ") {
+      count = count + 1
+    } else {
+      // do nothing
+    }
+  }
+
+  return count
+}
+
+linkupExerciseHandler("[data-click=aufgabe04]", aufgabe04)
+
+export function aufgabe05(args) {
+  // checks whether it contains upper case letters
+  const input = args
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+    if (currentElement === "." || currentElement === " ") {
+      continue //ignore
+    }
+    if (currentElement === currentElement.toUpperCase()) {
+      return true
+    }
+  }
+  return false
+}
+
+linkupExerciseHandler("[data-click=aufgabe05]", aufgabe05)
+
+export function aufgabe11(args) {
+  const input = args
+
+  // speichere den ACII-Code vom ersten Zeichen
+  const asciiCode = input.charCodeAt(0)
+
+  // Gib den ASCII-Code zurück
+
+  return asciiCode
+}
+
+linkupExerciseHandler("[data-click=aufgabe11]", aufgabe11)
