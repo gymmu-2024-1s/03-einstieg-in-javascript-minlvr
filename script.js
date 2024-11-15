@@ -125,3 +125,22 @@ export function aufgabe11(args) {
 }
 
 linkupExerciseHandler("[data-click=aufgabe11]", aufgabe11)
+
+export function aufgabe06(args) {
+  // checks whether it contains special characters
+  const input = args
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+    if (/^[a-zA-Z0-9\s]$/.test(currentElement)) {
+      continue //ignore letters, numbers and spaces
+      // a-z -> kleine Buchstaben
+      // A-Z -> große Buchstaben
+      // 0-9 -> Ziffern
+      // \s -> Leerzeichen
+    }
+    return true
+  }
+  return false
+}
+
+linkupExerciseHandler("[data-click=aufgabe06]", aufgabe06)
