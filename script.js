@@ -144,3 +144,38 @@ export function aufgabe06(args) {
 }
 
 linkupExerciseHandler("[data-click=aufgabe06]", aufgabe06)
+
+export function aufgabe07(input) {
+  for (let i = 0; i < input.length - 2; i++) {
+    const currentElement = input[i]
+    // checkt nach der genauen Abfolge der Zeichen 'u', 'n', 'd'
+    // gibt true zurück, wenn das Wort 'und' gefunden wird, egal wie es geschrieben ist
+    if (input[i] + input[i + 1] + input[i + 2] === "und") {
+      // wenn eine Zuordnung gefunden wird, gebe sofort true zurück
+      return true
+    }
+  }
+
+  return false
+}
+
+linkupExerciseHandler("[data-click=aufgabe07]", aufgabe07)
+
+export function aufgabe08(input) {
+  let result = ""
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+    if (currentElement === "e" || currentElement === "E") {
+      // wenn es 'e' oder 'E' ist, wird es durch '3' ersetzt
+      // 3“ an das Ergebnis anhängen
+      result += "3"
+    } else {
+      // wenn es nicht 'e' oder 'E' ist, bleibt es unverändert
+      // anhängen des ursprünglichen Zeichens ans Ergebnis
+      result += currentElement
+    }
+  }
+  return result
+}
+
+linkupExerciseHandler("[data-click=aufgabe08]", aufgabe08)
