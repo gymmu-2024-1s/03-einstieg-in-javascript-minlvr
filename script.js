@@ -43,16 +43,12 @@ export function aufgabe01(args) {
 linkupExerciseHandler("[data-click=aufgabe01]", aufgabe01)
 
 export function aufgabe02(args) {
-  const input = args
-  const result = []
-
-  for (let i = 0; i < input.length; i++) {
-    const currentElement = input[i]
-    result.push(currentElement)
-    result.push(currentElement)
+  let result = ""
+  for (let i = 0; i < args.length; i++) {
+    const currentElement = args[i]
+    result += currentElement
   }
-
-  return result.join("")
+  return result.toUpperCase()
 }
 
 linkupExerciseHandler("[data-click=aufgabe02]", aufgabe02)
@@ -179,3 +175,29 @@ export function aufgabe08(input) {
 }
 
 linkupExerciseHandler("[data-click=aufgabe08]", aufgabe08)
+
+export function aufgabe12(input) {
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === "e" || input[i] === "E") {
+      return i + 1 // in JavaScript beginnen Array-Indizes bei 0, das heisst, das erste Element eines Arrays steht bei Index 0, das zweite Element bei Index 1 und so weiter
+    }
+  }
+  return 0 // 0 zurückgeben, wenn kein „e“ gefunden wird
+}
+
+linkupExerciseHandler("[data-click=aufgabe12]", aufgabe12)
+
+export function aufgabe19(args) {
+  const input = args
+  const result = []
+
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+
+    result.push(currentElement)
+    result.push(currentElement)
+  }
+  return result.join("")
+}
+
+linkupExerciseHandler("[data-click=aufgabe19]", aufgabe19)
