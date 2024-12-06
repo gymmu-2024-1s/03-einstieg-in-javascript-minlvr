@@ -149,7 +149,7 @@ export function aufgabe07(input) {
     if (input[i] + input[i + 1] + input[i + 2] === "und") {
       // wenn eine Zuordnung gefunden wird, gebe sofort true zurück
       return true
-    }
+    } // zählt die Leerzeichen und Sonderzeichen mit
   }
 
   return false
@@ -201,3 +201,16 @@ export function aufgabe19(args) {
 }
 
 linkupExerciseHandler("[data-click=aufgabe19]", aufgabe19)
+
+export function aufgabe13(input) {
+  // die Zeichenkette läuft von hinten nach vorne durch
+  for (let i = input.length - 1; i >= 0; i--) {
+    if (input[i] === "e" || input[i] === "E") {
+      // gibt die Position des letzten "e"s vom Ende der Zeichenkette zurück
+      return input.length - i
+    }
+  }
+  return 0
+}
+
+linkupExerciseHandler("[data-click=aufgabe13]", aufgabe13)
