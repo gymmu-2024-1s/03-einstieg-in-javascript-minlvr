@@ -43,11 +43,15 @@ export function aufgabe01(args) {
 linkupExerciseHandler("[data-click=aufgabe01]", aufgabe01)
 
 export function aufgabe02(args) {
+  // Intialisiert eine leere Zeichenkette, um das konkatenierte Ergebnis zu speichern
   let result = ""
   for (let i = 0; i < args.length; i++) {
+    // Abrufen des aktuell bearbeiteten Elements
     const currentElement = args[i]
+    // hängt das aktuelle Element an die Ergebniszeichenkette an
     result += currentElement
   }
+  // Rückgabe der verketteten Zeichenfolge in Grossbuchstaben
   return result.toUpperCase()
 }
 
@@ -119,7 +123,7 @@ export function aufgabe04(args) {
 linkupExerciseHandler("[data-click=aufgabe04]", aufgabe04)
 
 export function aufgabe05(args) {
-  // checks whether it contains upper case letters
+  // prüft, ob er Großbuchstaben enthält
   const input = args
   for (let i = 0; i < input.length; i++) {
     const currentElement = input[i]
@@ -149,7 +153,6 @@ export function aufgabe11(args) {
 linkupExerciseHandler("[data-click=aufgabe11]", aufgabe11)
 
 export function aufgabe06(args) {
-  // checks whether it contains special characters
   const input = args
   for (let i = 0; i < input.length; i++) {
     const currentElement = input[i]
@@ -215,14 +218,19 @@ linkupExerciseHandler("[data-click=aufgabe12]", aufgabe12)
 
 export function aufgabe19(args) {
   const input = args
+  // Intialisiert ein leeres Array, um die duplizierten Zeichen zu speichern
   const result = []
 
+  // Iteriert über jedes Zeichen in der Eingabezeichenkette
   for (let i = 0; i < input.length; i++) {
+    // Ermittelt das aktuelle Zeichen, das verarbeitet wird.
     const currentElement = input[i]
 
+    // Schiebt das aktuelle Zeichen zweimal in das Ergebnisfeld
     result.push(currentElement)
     result.push(currentElement)
   }
+  // Fügt die Zeichen im Ergebnis-Array zu einer einzigen Zeichenkette zusammen und gibt diese zurück
   return result.join("")
 }
 
@@ -230,37 +238,54 @@ linkupExerciseHandler("[data-click=aufgabe19]", aufgabe19)
 
 export function aufgabe17(args) {
   const input = args
+  // Das Array zur Aufnahme der Teilzeichenfolgen
   const totalList = []
+  // Das Array zur Aufnahme der aktuellen Teilzeichenkette
   const currentList = []
 
   for (let i = 0; i < input.length; i++) {
     const currentElement = input[i]
 
     if (currentElement === " ") {
+      // Fügt die aktuelle Teilzeichenkette zur Gesamtliste hinzu
       totalList.push(currentList.join(""))
+      // Zurücksetzen der aktuellen Teilzeichenkette
       currentList.length = 0
     } else {
+      // Fügt das aktuelle Zeichen zur aktuellen Teilzeichenkette hinzu
       currentList.push(currentElement)
     }
   }
+  // Fügt die letzte Teilzeichenkette zur Gesamtliste hinzu
   totalList.push(currentList.join(""))
+  // Rückgabe der Gesamtliste
   return totalList
 }
 linkupExerciseHandler("[data-click=aufgabe17]", aufgabe17)
 
 export function aufgabe18(args) {
+  // Speichern der Eingabezeichenfolge in einer Variablen
   const input = args
+
+  // Ruft eine weitere Funktion zum Extrahieren von Name und Alter aus dem Eingabestring auf
   const nameAndAge = aufgabe17(input)
+
+  // Initialisieren eines leeren Arrays zum Speichern der Satzteile
   const result = []
 
+  // Fügt den ersten Teil des Satzes zum Array hinzu
   result.push("Sie heissen ")
 
+  // Fügt den Namen in den Satz ein
   result.push(nameAndAge[0])
+
+  // Fügt weitere Satzteile zum Array hinzu
   result.push(" und sind ")
   result.push(nameAndAge[1])
   result.push(" Jahre alt.")
 
-  return result.join
+  // Die Satzteile zu einer einzigen Zeichenkette zusammenfügen und diese zurückgeben
+  return result.join() // Hinweis: Ich habe nach der Verknüpfung Klammern hinzugefügt
 }
 linkupExerciseHandler("[data-click=aufgabe18]", aufgabe18)
 
