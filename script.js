@@ -228,19 +228,6 @@ export function aufgabe19(args) {
 
 linkupExerciseHandler("[data-click=aufgabe19]", aufgabe19)
 
-export function aufgabe13(input) {
-  // die Zeichenkette läuft von hinten nach vorne durch
-  for (let i = input.length - 1; i >= 0; i--) {
-    if (input[i] === "e" || input[i] === "E") {
-      // gibt die Position des letzten "e"s vom Ende der Zeichenkette zurück
-      return input.length - i
-    }
-  }
-  return 0
-}
-
-linkupExerciseHandler("[data-click=aufgabe13]", aufgabe13)
-
 export function aufgabe17(args) {
   const input = args
   const totalList = []
@@ -404,97 +391,125 @@ export function aufgabe23(input) {
 linkupExerciseHandler("[data-click=aufgabe23]", aufgabe23)
 
 export function aufgabe24(input) {
-  // Prüft, ob die Eingabezeichenfolge mindestens 2 Zeichen enthält
   if (input.length < 2) {
-    return input // Falls nicht, wird die ursprüngliche Zeichenkette zurückgegeben
+    return input
   }
-  // Ermittelt das erste Zeichen der Eingabezeichenfolge
-  const firstCharacter = input.charAt(0)
-  // ruft das letzte Zeichen der Eingabezeichenfolge ab
-  const lastCharacter = input.charAt(input.length - 1)
-  // Erstellt eine neue Zeichenkette durch das Verketten des letzten Zeichens, des mittleren Zeichens und des ersten Zeichens
-  let result = lastCharacter
-  for (let i = 1; i < input.length - 1; i++) {
-    result += input.charAt(i)
+  let result = "" // Initialisieren einer leeren Ergebniszeichenkette
+  for (let i = 0; i < input.length; i++) {
+    // Wenn dies das erste Zeichen ist, wird das LETZTE Zeichen an das Ergebnis angehängt
+    if (i === 0) {
+      result += input[input.length - 1]
+    }
+    // Wenn dies das letzte Zeichen ist, wird das erste Zeichen an das Ergebnis angehängt
+    else if (i === input.length - 1) {
+      result += input[0]
+    }
+    // Bei allen anderen Zeichen wird das Zeichen unverändert angefügt
+    else {
+      //Der aktuelle Wert von result wird genommen und das Zeichen bei Index i der Eingabezeichenkette wird an das Ende der Zeichenkette angehängt
+      result += input[i]
+    }
   }
-  result += firstCharacter
+  // gibt die resultierende Zeichenfolge mit vertauschten ersten und letzten Zeichen zurück
   return result
 }
 linkupExerciseHandler("[data-click=aufgabe24]", aufgabe24)
 
 export function aufgabe25(input) {
-  let result = ""
-  let count = 0
+  const length = input.length
 
-  for (let i = 0; i < input.length; i++) {
-    if (count === getMiddleIndex(input)) {
-      i++
-      if (hasTwoMiddleCharacters(input)) {
-        i++
+  // Berechnet den mittleren Index, indem die Bits um eine Position nach rechts verschieben werden,
+  // die Länge durch 2 geteilt und auf die nächste Ganzzahl abgerundet wird
+  let middleIndex = length >> 1
+  // Initialisiert eine leere Ergebniszeichenkette
+  let result = ""
+  if (length % 2 === 0) {
+    // Wenn die Länge gerade ist, werden die beiden mittleren Zeichen gelöscht
+    for (let i = 0; i < length; i++) {
+      // Wenn der aktuelle Index nicht einer der beiden mittleren Indices ist, wird das Zeichen an die Ergebniszeichenkette angehängt
+      if (i < middleIndex - 1 || i > middleIndex + 1) {
+        result += input[i]
       }
-    } else {
-      result += input.charAt(i)
     }
-    count++
+  } else {
+    // Wenn die Länge ungerade ist, wird das einzelne mittlere Zeichen gelöscht
+    for (let i = 0; i < length; i++) {
+      // Wenn der aktuelle Index nicht der mittlere Index ist, wird das Zeichen an die Ergebniszeichenkette angehängt
+      if (i < middleIndex || i > middleIndex) {
+        result += input[i]
+      }
+    }
   }
 
   return result
 }
-
-function getMiddleIndex(input) {
-  let count = 0
-  for (let i = 0; i < input.length; i++) {
-    count++
-  }
-  return count / 2
-}
-
-function hasTwoMiddleCharacters(input) {
-  let count = 0
-  for (let i = 0; i < input.length; i++) {
-    count++
-  }
-  return count === count + count
-}
 linkupExerciseHandler("[data-click=aufgabe25]", aufgabe25)
 
 export function aufgabe26(input) {
-  if (input.length < 2) {
-    return input
-  }
-
   const firstChar = input[0]
   const secondChar = input[1]
 
+  // Vergleicht die ersten beiden Zeichen und vertauscht sie gegebenfalls
   if (firstChar > secondChar) {
-    return secondChar + firstChar + input.slice(2)
+    // Wenn das erste Zeichen grösser als das zweite Zeichen ist, werden sie vertauscht.
+    let result = secondChar + firstChar
+    for (let i = 2; i < input.length; i++) {
+      result += input[i]
+    }
+    return result
   } else {
+    // Wenn das erste Zeichen kleiner oder gleich dem zweiten Zeichen ist, werden sie nicht vertauscht.
     return input
   }
 }
 linkupExerciseHandler("[data-click=aufgabe26]", aufgabe26)
 
-export function aufgabe27(input) {
-  for (let i = 0; i < input.length; i++) {
-    const ascii = input.charCodeAt(i)
-    if (ascii < 48 || ascii > 57) {
-      return false
-    }
+export function isNumber(input) {
+  // Prüft, ob die Eingabe bereits eine Zahl ist
+  // Dies prüft den Typ der Eingabe, um festzustellen, ob es sich um eine Zahl handelt
+  if (typeof input === "number") {
+    // Wenn ja, sofort "true" zurückgeben
+    return true
+  } else {
+    // Ist dies nicht der Fall, versucht es, sie in eine Zahl umzuwandeln
+    // Hier wird die Funktion Zahl() verwendet, um die Eingabe in eine Zahl umzuwandeln
+    const num = Number(input)
+    // Prüft, ob die umgewandelte Zahl nicht NaN (Not a Number) ist
+    // NaN ist der einzige Wert, der nicht gleich sich selbst ist, daher funktioniert diese Prüfung
+    // Wenn die Zahl nicht NaN ist, handelt es sich um eine gültige Zahl, also wird true zurückgegeben
+    return num === num
   }
-  return true
 }
 linkupExerciseHandler("[data-click=aufgabe27]", aufgabe27)
 
+/**
+ * Tests whether 2 numbers are separated by a space in the input.
+ * If yes, outputs the sum; otherwise an error message is displayed.
+ *
+ * @param {string} input - The input to check.
+ * @returns {string} The sum of the two numbers if they are separated by a space, otherwise an error message.
+ */
 export function aufgabe28(input) {
+  // Aufteilung der EIngabe in ein Array von substrings getreenten Teilzeichenfolgen
   const parts = input.split(" ")
+
+  // Prüft, ob es genau zwei Teile gibt
   if (parts.length !== 2) {
-    return "Error: Input must contain two numbers separated by a space."
+    // Falls nicht ist die Rückgabe eine Fehlermeldung
+    return "Error: Input must contain exactly two numbers separated by a space."
   }
-  const ascii1 = parts[0].charCodeAt(0)
-  const ascii2 = parts[1].charCodeAt(0)
-  if (ascii1 < 48 || ascii1 > 57 || ascii2 < 48 || ascii2 > 57) {
-    return "Error: Both parts must be numbers."
+
+  // versucht, die beiden Teile als Zahlen zu analysieren
+  const num1 = parseFloat(parts[0])
+  const num2 = parseFloat(parts[1])
+
+  // Prüft, ob beide Teile gültige Zahlen sind
+  if (isNaN(num1) || isNaN(num2)) {
+    // Falls nicht ist die Rückgabe eine Fehlermeldung
+    return "Error: Input must contain two valid numbers separated by a space."
   }
-  return ascii1 - 48 + (ascii2 - 48)
+
+  // Berechnet und gibt die Summe der beiden Zahlen zurück
+  return "The sum is: " + (num1 + num2)
 }
 linkupExerciseHandler("[data-click=aufgabe28]", aufgabe28)

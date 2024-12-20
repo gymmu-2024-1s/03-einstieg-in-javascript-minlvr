@@ -54,7 +54,47 @@
 
       <section>
         <h2>Sortierverfahren</h2>
-        <!-- TODO: Schreiben Sie hier zu Sortierverfahren-->
+        Bubblesort: Bubble Sort ist ein einfaches Sortierverfahren, welches
+        Listen in aufsteigender oder absteigender Reihenfolge einordnet. Es
+        funktioniert, indem benachbarte Elemente einer Liste wiederholt
+        beisammen verglichen und vertauscht werden, wenn sie in der falschen
+        Reihenfolge stehen. Dabei "streifen" grössere Elemente in jeder
+        Iteration nach oben, während kleinere nach unten sinken. Dieser Vorgang
+        wird so oft wiederholt bis die Liste komplett sortiert ist. Beispiel:
+        Wir nehmen die Liste 5,3,8,4,2, die in aufsteigender Reihenfolge
+        sortiert werden soll. Zuerst werden die Paare (5,3), (3,8), (8,4) und
+        (8,2) verglichen. Der kleinere der beiden Elemente wird an der Position
+        der grosseren Elemente eingesetzt und die Liste wird wiederholt bis alle
+        Elemente sortiert sind. Die Liste 5,3,8,4,2 wird dann zu 2,3,4,5,8.
+        Countingsort: Counting Sort ist ein Sortierverfahren, welches auf dem
+        Zählen der Hüufigkeit von Elementen basiert, anstatt sie zu vergleichen.
+        Es eignet sich für Listen, deren Werte sich in einem begrenzten Bereich
+        bewegen. Dieses Sortierverfahren ist extrem effizient, wenn die
+        Wertezahl im Verhältnis zur Listenlänge klein ist. Nehmen wir wieder ein
+        Beispiel: die Liste 4,2,2,8,3,3,1. Der Wertebereich reicht von 1 bis 8.
+        Zuerst wird eine Zählliste erstellt, die für jeden Wert zählt, wie oft
+        er in der ursprünglichen Liste vorkommt. In diesem Beispiel für die
+        Werte 1 bis 8: 1:1,2:2,3:2,4:1,5:0,6:0,7:0,8:1. Danach wird die
+        Zählliste kumuliert, damit jede Position die Anzahl aller Werte bis zu
+        diesem Punkt enthält. Beim Beispiel: 1:1,2:3,3:5,4:6,5:6,6:6,7:6,8:7. Es
+        gibt die Position der Elemente in der sortierten Liste an. Zum schluss
+        werden die Elemente der Eingabeliste ahand der kumulierten Zählliste in
+        einer Hilfsliste sortiert. Die sortierte Liste ist 1,2,2,3,3,4,8.
+        Selectionsort: Selection Sort ist ein einfacher Sortierverfahren,
+        welches Listen durch wiederholtes FInden des kleinsten Elements und
+        dessen Platzierung an der richtigen Position sortiert. Es unterteilt die
+        Liste in einen sortierten und einen unsortierten Bereich. In jedem
+        Schritt sucht der Algorithmus im unsortierten Teil der Liste das
+        kleinste Element. Nehmen wir die Liste 5,3,6,2,4, die in aufsteigender
+        Reihenfolge sortiert werden soll: Erst wird das kleinste Element 2
+        gefunden und mit 5 (dem ersten Element) vertauscht. Die Liste ist jetzt:
+        2,3,6,5,4. Jetzt wird der unsortierte Bereich um eine Position
+        verkleinert. Dieser Vorgang wiederholt sich bis die Liste komplett
+        sortiert ist. Beim Beispiel: das kleinste Element 3 wird im unsortierten
+        Teil gefunden, welches schon in der richtigen Position ist. Es findet
+        also keine Vertauschung statt. Danach wird das nächst kleinste Element 4
+        gefunden und mit 6 vertauscht: 2,3,4,5,6. Im letzten Durchlauf ist 5
+        schon in der richtigen Position. Die Liste ist 2,3,4,5,6 bleibt.
       </section>
     </div>
 
