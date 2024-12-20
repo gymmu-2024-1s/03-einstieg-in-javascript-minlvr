@@ -123,20 +123,31 @@ export function aufgabe04(args) {
 linkupExerciseHandler("[data-click=aufgabe04]", aufgabe04)
 
 export function aufgabe05(args) {
-  // prüft, ob er Großbuchstaben enthält
+  // Initialisiert die Eingabe und die Variablen zur Überprüfung
   const input = args
+  let hasLetter = false
+  let hasUppercase = false
+
+  // Iteriert über jedes Zeichen in der Eingabezeichenkette
   for (let i = 0; i < input.length; i++) {
     const currentElement = input[i]
-    if (currentElement === "." || currentElement === " ") {
-      continue //ignore
+
+    // Überprüft, ob das aktuelle Zeichen ein Buchstabe ist
+    if (currentElement.match(/[a-z]/i)) {
+      hasLetter = true
     }
-    if (currentElement === currentElement.toUpperCase()) {
-      return true
+
+    // Überprüft, ob das aktuelle Zeichen ein Großbuchstabe ist
+    if (
+      currentElement === currentElement.toUpperCase() &&
+      currentElement !== currentElement.toLowerCase()
+    ) {
+      hasUppercase = true
     }
   }
-  return false
+  // Gibt zurück, ob sowohl ein Buchstabe als auch ein Großbuchstabe vorkommen sind
+  return hasLetter && hasUppercase
 }
-
 linkupExerciseHandler("[data-click=aufgabe05]", aufgabe05)
 
 export function aufgabe11(args) {
@@ -186,34 +197,55 @@ export function aufgabe07(input) {
 
 linkupExerciseHandler("[data-click=aufgabe07]", aufgabe07)
 
-export function aufgabe08(input) {
+export function aufgabe08(args) {
+  const input = args
+  // Intialisiert eine leere Zeichenkette zur Speicherung des Ergebnisses
   let result = ""
+
+  // Iteriert über jedes Zeichen in der Eingabezeichenkette
   for (let i = 0; i < input.length; i++) {
     const currentElement = input[i]
-    if (currentElement === "e" || currentElement === "E") {
-      // wenn es 'e' oder 'E' ist, wird es durch '3' ersetzt
-      // 3“ an das Ergebnis anhängen
-      result += "3"
+
+    // Prüft, ob das aktuelle Zeichen ein kleingeschriebenes "e" ist
+    if (currentElement === "e") {
+      // Prüft, ob das nächste Zeichen ein kleingeschriebenes "g" ist
+      if (i < input.length - 1 && input[i + 1] === "g") {
+        // Wenn ja wird das ursprüngliche Zeichen an die Ergebniszeichenkette angehängt
+        result += currentElement
+      } else {
+        // Ist dies nicht der Fall, wird eine "3" an die Ergebniszeichenkette angehängt
+        result += "3"
+      }
     } else {
-      // wenn es nicht 'e' oder 'E' ist, bleibt es unverändert
-      // anhängen des ursprünglichen Zeichens ans Ergebnis
+      // Ist dies nicht der Fall, wird das ursprüngliche Zeichen an die Ergebniszeichenkette angehängt
       result += currentElement
     }
   }
+  // Rückgabe der geänderten Zeichenfolge
   return result
 }
 
 linkupExerciseHandler("[data-click=aufgabe08]", aufgabe08)
 
-export function aufgabe12(input) {
+export function aufgabe12(args) {
+  // Initialisiert die Eingabe und die Position
+  const input = args
+  let position = null
+
+  // Iteriert über jedes Zeichen in der Eingabezeichenkette
   for (let i = 0; i < input.length; i++) {
-    if (input[i] === "e" || input[i] === "E") {
-      return i + 1 // in JavaScript beginnen Array-Indizes bei 0, das heisst, das erste Element eines Arrays steht bei Index 0, das zweite Element bei Index 1 und so weiter
+    const currentElement = input[i]
+
+    // Überprüft, ob das aktuelle Zeichen ein "e" ist
+    if (currentElement === "e") {
+      // Wenn ja, aktualisiert die Position und bricht die Schleife ab
+      position = i
+      break
     }
   }
-  return 0 // 0 zurückgeben, wenn kein „e“ gefunden wird
+  // Gibt die Position zurück oder null, wenn das "e" nicht gefunden wird
+  return position
 }
-
 linkupExerciseHandler("[data-click=aufgabe12]", aufgabe12)
 
 export function aufgabe19(args) {
@@ -313,18 +345,14 @@ export function aufgabe10(input) {
 }
 linkupExerciseHandler("[data-click=aufgabe10]", aufgabe10)
 
-export function aufgabe9(input) {
-  const result = []
-  if (input.length === 6) {
-    result.push(true)
-  } else {
-    result.push(false)
-  }
-  return result[0]
-  // die Funktion überprüft die Länge der Eingabezeichenfolge mit der Eigenschaft "length".
-  // Wenn die Länge genau 6 Zeichen beträgt, gibt die Funktion "true" zurück Ansonsten gibt die Funktion "false" zurück.
+export function aufgabe09(args) {
+  // Überprüft, ob die Eingabe eine Zeichenkette ist
+  const input = args
+
+  // Überprüft, ob die Länge der Eingabezeichenkette genau 6 Zeichen beträgt
+  return input.length === 6
 }
-linkupExerciseHandler("[data-click=aufgabe9]", aufgabe9)
+linkupExerciseHandler("[data-click=aufgabe9]", aufgabe09)
 
 export function aufgabe15(input) {
   const result = []
@@ -489,7 +517,7 @@ export function aufgabe26(input) {
 }
 linkupExerciseHandler("[data-click=aufgabe26]", aufgabe26)
 
-export function isNumber(input) {
+export function aufgabe27(input) {
   // Prüft, ob die Eingabe bereits eine Zahl ist
   // Dies prüft den Typ der Eingabe, um festzustellen, ob es sich um eine Zahl handelt
   if (typeof input === "number") {
@@ -507,13 +535,6 @@ export function isNumber(input) {
 }
 linkupExerciseHandler("[data-click=aufgabe27]", aufgabe27)
 
-/**
- * Tests whether 2 numbers are separated by a space in the input.
- * If yes, outputs the sum; otherwise an error message is displayed.
- *
- * @param {string} input - The input to check.
- * @returns {string} The sum of the two numbers if they are separated by a space, otherwise an error message.
- */
 export function aufgabe28(input) {
   // Aufteilung der EIngabe in ein Array von substrings getreenten Teilzeichenfolgen
   const parts = input.split(" ")
@@ -538,3 +559,26 @@ export function aufgabe28(input) {
   return "The sum is: " + (num1 + num2)
 }
 linkupExerciseHandler("[data-click=aufgabe28]", aufgabe28)
+
+export function aufgabe14(args) {
+  // Initialisiert die Eingabe und die Anzahl der "e"s
+  const input = args
+  let count = 0
+  // Iteriert über jedes Zeichen in der Eingabezeichenkette
+  for (let i = 0; i < input.length; i++) {
+    const currentElement = input[i]
+
+    // Überprüft, ob das aktuelle Zeichen ein "e" ist
+    if (currentElement === "e") {
+      // Wenn ja, inkrementiert die Anzahl der "e"s
+      count++
+      // Wenn die Anzahl der "e"s 3 erreicht, gibt die Funktion die aktuelle Position zurück
+      if (count === 3) {
+        return i
+      }
+    }
+  }
+  // Wenn die Schleife beendet ist und die Anzahl der "e"s noch nicht 3 erreicht hat, gibt die Funktion -1 zurück
+  return -1
+}
+linkupExerciseHandler("[data-click=aufgabe14]", aufgabe14)
